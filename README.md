@@ -138,3 +138,10 @@ apply migration to container
 docker-compose run web alembic -c src/api/alembic.ini upgrade head
 
 ```
+
+
+## Developer commands
+Generate new frontend client
+```
+npx swagger-typescript-api -p http://localhost:8000/openapi.json -o ./domain -n client.ts
+```
