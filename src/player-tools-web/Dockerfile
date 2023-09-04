@@ -1,21 +1,23 @@
+# Use an official Node.js LTS (Long Term Support) Alpine Linux image as the base image
 FROM node:lts-alpine
 
+# Set environment variables
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
-# install simple http server for serving static content
-RUN npm install -g http-server
-
-# install bash
+# Install Bash in the container
 RUN apk update && apk add bash
 
-# copy both 'package.json' and 'package-lock.json' (if available)
+WORKDIR /web
+
+# Copy only the package.json and package-lock.json files and install dependencies
 COPY package*.json ./
 
-# install project dependencies
-RUN npm install
+#Install dependecies
+RUN npm i
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY . /web/
+# Copy the rest of your project files into the container
+COPY . .
 
+# Expose the port your application listens on
 EXPOSE 5173

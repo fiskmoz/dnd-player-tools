@@ -3,11 +3,7 @@
 from fastapi import FastAPI
 import uvicorn
 
-
-from database import models, db
 from v1 import character_sheet
-
-models.Base.metadata.create_all(bind=db.engine)
 
 app = FastAPI()
 

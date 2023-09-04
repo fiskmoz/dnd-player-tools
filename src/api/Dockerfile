@@ -5,13 +5,11 @@ FROM python:3.8
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /api/
+WORKDIR /api
 
 # Install dependencies
 RUN pip install pipenv
 COPY Pipfile Pipfile.lock /api/
 RUN pipenv install --system --dev
-
-COPY . /api/
 
 EXPOSE 8000

@@ -3,7 +3,7 @@
 from fastapi import APIRouter, Depends
 from dependencies.dependencies import get_db
 from database import crud
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from schemas.schemas import CharacterSheetResponse
 
@@ -18,10 +18,10 @@ router = APIRouter(
     "/{character_sheet_id}",
 )
 async def get_character_sheet(
-    id: int, db: Session = Depends(get_db)
+    id: int, db: AsyncSession = Depends(get_db)
 ) -> CharacterSheetResponse:
     """gets a character sheet by id"""
-    sheet = crud.get_character_sheet_by_id(db, id)
+    sheet = await crud.create_character_sheet_async(db, id)
     return CharacterSheetResponse(name=sheet.Name)
 
 
@@ -29,8 +29,8 @@ async def get_character_sheet(
     "/",
 )
 async def create_character_sheet(
-    db: Session = Depends(get_db),
+    db: AsyncSession = Depends(get_db),
 ) -> CharacterSheetResponse:
     """gets a character sheet by id"""
-    sheet = crud.create_character_sheet(db, "")
+    sheet = await crud.create_character_sheet_async(db, "")
     return CharacterSheetResponse(name=sheet.Name)

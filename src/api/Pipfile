@@ -8,7 +8,9 @@ fastapi = "==0.103.0"
 pydantic = "==2.3.0"
 alembic = "*"
 python-dotenv = "*"
-psycopg2 = "*"
 uvicorn = "*"
+sqlalchemy = {extras = ["asyncio"], version = "*"}
+asyncpg = "*"
+psycopg2 = "*"
 
 [dev-packages]

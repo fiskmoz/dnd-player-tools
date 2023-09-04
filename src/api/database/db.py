@@ -1,8 +1,6 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, async_session
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
-# SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
+SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://user:password@postgresserver/db"
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+engine = create_async_engine(SQLALCHEMY_DATABASE_URL)
+SessionLocal = async_session(engine)

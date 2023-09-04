@@ -128,17 +128,20 @@ docker exec -it dnd-player-tools-web-1 bash
 create migration
 
 ```
-docker-compose run web alembic revision -c src/api/alembic.ini revision --autogenerate -m "migration name"
+docker-compose run web alembic revision revision --autogenerate -m "migration name"
 
 ```
 
 apply migration to container
 
 ```
-docker-compose run web alembic -c src/api/alembic.ini upgrade head
+docker-compose run api alembic upgrade head
 
 ```
 
+```
+docker-compose run api alembic current
+```
 
 ## Developer commands
 Generate new frontend client

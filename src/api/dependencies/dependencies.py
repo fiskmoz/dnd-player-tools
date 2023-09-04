@@ -1,10 +1,13 @@
 # Dependencies
-from database.db import SessionLocal
+from database.db import SessionLocal, engine
+from database import models
 
 
-def get_db():
+async def get_db():
+    async with engine.begin() as connection:
+        await connection.run_sync(models.Base.metadata.create_all(bind=db.engine))
     db = SessionLocal()
     try:
         yield db
     finally:
-        db.close()
+        await db.close()

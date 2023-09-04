@@ -9,14 +9,15 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=test_db
+      
   api:
     build:
-      context: /src/api
+      context: ./src/api
       dockerfile: Dockerfile
-    working_dir: /api/src/api
+    working_dir: /api/
     command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
     volumes:
-      - .:/api
+      - ./src/api:/api
     ports:
       - "8000:8000"
     depends_on:
@@ -24,13 +25,12 @@ services:
 
   web:
     build:
-      context: /src/player-tools-web
+      context: ./src/player-tools-web
       dockerfile: Dockerfile
-    working_dir: /web/src/player-tools-web
-    command: npm run host
+    working_dir: /web/
+    command: sh -c "npm rebuild esbuild && npm run host"
     volumes:
-      - .:/web
-      - .:/web/node_modules
+      - ./src/player-tools-web:/web
     ports:
       - "5173:5173"
 
