@@ -1,12 +1,10 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { Api, type CharacterSheetResponse, type HttpResponse } from 'domain/client'
 
 export const useCharacterStore = defineStore('character', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+  function createCharacter(): Promise<HttpResponse<CharacterSheetResponse, any>> {
+    return new Api().characterSheets.createCharacterSheetCharacterSheetsPost()
   }
 
-  return { count, doubleCount, increment }
+  return {}
 })

@@ -12,5 +12,8 @@ uvicorn = "*"
 sqlalchemy = {extras = ["asyncio"], version = "*"}
 asyncpg = "*"
 psycopg2 = "*"
+pytest = "*"
+pytest-mock = "*"
+greenlet = "*"
 
 [dev-packages]

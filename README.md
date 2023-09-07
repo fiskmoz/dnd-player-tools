@@ -42,12 +42,26 @@ localhost:5173
 
 Python extension
 Pylint extension
+Vetur
 
 use these settings
 
 ```
 "python.autoComplete.extraPaths": ["src/api"],
 "python.analysis.extraPaths": ["src/api"]
+```
+
+For local development use this in /api folder to generate virtual environment
+```
+virtualenv venv
+```
+Then activate it in a terminal
+```
+source venv/Scripts/activate
+```
+Then install dependecies
+```
+pipenv install
 ```
 
 If vscode fails to lint etc, select the virtual environment as the interpreter

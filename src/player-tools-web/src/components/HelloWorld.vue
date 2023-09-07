@@ -1,7 +1,7 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+
+function increment() {
+}
 </script>
 
 <template>
@@ -11,5 +11,13 @@ defineProps<{
         AI Character Creation
       </div>
     </div>
+      <div class="container">
+    <div class="col-12">
+      <button @click="increment" >Navigate to new</button>
+    </div>
+  </div>
   </div>
 </template>
+
+<style>
+</style>
