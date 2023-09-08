@@ -4,11 +4,19 @@ from fastapi import FastAPI
 import uvicorn
 
 from v1 import character_sheet
+from database.db import async_engine
+from database.models import Base
 
 app = FastAPI()
 
 app.include_router(character_sheet.router)
+##
 
+@app.on_event("startup")
+async def startup():
+    # create db tables
+    async with async_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
 @app.get("/healthcheck")
 async def health():

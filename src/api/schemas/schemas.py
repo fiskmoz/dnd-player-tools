@@ -9,10 +9,6 @@ class CharacterSheetResponse(BaseModel):
     id: str
     name: str
 
-    class Config:
-        orm_mode = True
-
-
 class CharacterSheetRequest(BaseModel):
     """Request model for creating a character sheet"""
 

@@ -1,22 +1,15 @@
 """ Setup for postgres DB """
 
-from sqlalchemy.ext.asyncio import create_async_engine, async_session
-from .models import Base
+from typing import AsyncIterator
+from sqlalchemy.ext.asyncio import create_async_engine,AsyncSession, async_sessionmaker
 
 
+SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://postgres:admin@db:5432"
 
-SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://user:password@postgresserver/db"
-
-engine = create_async_engine(SQLALCHEMY_DATABASE_URL)
-local_session = async_session(engine)
+async_engine = create_async_engine(SQLALCHEMY_DATABASE_URL, echo=True)
+async_session_local = async_sessionmaker(async_engine, expire_on_commit=False, class_=AsyncSession)
 
 
-async def get_db_session_async():
-    """Gets a db session"""
-    async with engine.begin() as connection:
-        await connection.run_sync(Base.metadata.create_all(bind=engine))
-    database = local_session()
-    try:
-        yield database
-    finally:
-        await database.close()
+async def get_session_async() -> AsyncIterator[async_sessionmaker]:
+    """" Get async session from pgsql """
+    yield async_session_local()

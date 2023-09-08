@@ -176,3 +176,13 @@ Generate new frontend client
 ```
 npx swagger-typescript-api -p http://localhost:8000/openapi.json -o ./domain -n client.ts
 ```
+
+## Testing
+
+Testing used is pytest, pytest-asyncio an httpx
+
+To run tests run following command:
+
+```
+docker-compose run api pytest
+```

@@ -9,13 +9,13 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=test_db
-      
+
   api:
     build:
       context: ./src/api
       dockerfile: Dockerfile
     working_dir: /api/
-    command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+    command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000 --reload "
     volumes:
       - ./src/api:/api
     ports:

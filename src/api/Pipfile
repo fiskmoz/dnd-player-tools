@@ -17,5 +17,6 @@ pytest-mock = "*"
 greenlet = "*"
 httpx = "*"
 trio = "*"
+pytest-asyncio = "*"
 
 [dev-packages]
