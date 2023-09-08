@@ -15,5 +15,7 @@ psycopg2 = "*"
 pytest = "*"
 pytest-mock = "*"
 greenlet = "*"
+httpx = "*"
+trio = "*"
 
 [dev-packages]

@@ -51,15 +51,27 @@ use these settings
 "python.analysis.extraPaths": ["src/api"]
 ```
 
+For local development install virtualenv
+
+```
+pip install virtualenv
+pip install pipenv
+```
+
 For local development use this in /api folder to generate virtual environment
+
 ```
 virtualenv venv
 ```
+
 Then activate it in a terminal
+
 ```
 source venv/Scripts/activate
 ```
+
 Then install dependecies
+
 ```
 pipenv install
 ```
@@ -158,7 +170,9 @@ docker-compose run api alembic current
 ```
 
 ## Developer commands
+
 Generate new frontend client
+
 ```
 npx swagger-typescript-api -p http://localhost:8000/openapi.json -o ./domain -n client.ts
 ```

@@ -1,7 +1,5 @@
 """ Configuration for alembic """
 
-# pylint: skip-file
-
 import asyncio
 import os
 import sys
