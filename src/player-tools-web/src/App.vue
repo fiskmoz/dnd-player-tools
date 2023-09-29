@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header>
@@ -7,8 +6,12 @@
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/home">Home</RouterLink>
       </nav>
+    </div>
+    <div>
+      Hej detta är en router view
+      <RouterView></RouterView>
     </div>
   </header>
 </template>

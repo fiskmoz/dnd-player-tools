@@ -3,7 +3,7 @@ import pytest
 from httpx import AsyncClient
 
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_healthcheck_async(async_client: AsyncClient):
     """ Test the healthcheck endpoint"""
     response = await async_client.get("/healthcheck")

@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia'
-import { Api, type CharacterSheetResponse, type HttpResponse } from 'domain/client'
+import { Api } from '@/domain/client'
 
-export const useCharacterStore = defineStore('character', () => {
-  function createCharacter(): Promise<HttpResponse<CharacterSheetResponse, any>> {
-    return new Api().characterSheets.createCharacterSheetCharacterSheetsPost()
+export const characterSheetStore = defineStore('character', () => {
+  function createCharacter(
+    request: CharacterSheetRequest
+  ): Promise<HttpResponse<CharacterSheetResponse, any>> {
+    return new Api().characterSheets.createCharacterSheetCharacterSheetsPost(request)
   }
 
   return {}

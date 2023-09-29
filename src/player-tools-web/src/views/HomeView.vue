@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type HelloWorldVue from '@/components/HelloWorld.vue';
-
+import HelloWorld from '../components/HelloWorld.vue'
 </script>
 
 <template>
   <main>
-    <HelloWorldVue></HelloWorldVue>
+    <HelloWorld></HelloWorld>
   </main>
 </template>

@@ -4,8 +4,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from database import crud
 from database.db import get_session_async
 from sqlalchemy.ext.asyncio import AsyncSession
+from mappers import character_sheet_mapper
 
-from schemas.schemas import CharacterSheetResponse
+from schemas.schemas import CharacterSheetRequest, CharacterSheetResponse
 
 
 router = APIRouter(
@@ -18,23 +19,22 @@ router = APIRouter(
     "/{character_sheet_id}",
 )
 async def get_character_sheet(
-    sheet_id: int, session: AsyncSession = Depends(get_session_async)
+    character_sheet_id: int, session: AsyncSession = Depends(get_session_async)
 ) -> CharacterSheetResponse:
     """gets a character sheet by id"""
-    sheet = await crud.get_character_sheet_by_id_async(session, sheet_id)
+    sheet = await crud.get_character_sheet_by_id_async(session, character_sheet_id)
     if sheet is None:
         raise HTTPException(status_code=404, detail="Sheet not found")
-    return CharacterSheetResponse(name=sheet.Name).model_dump_json()
+    return character_sheet_mapper.character_sheet_response_map(sheet)
 
 
 @router.post(
     "/",
 )
 async def create_character_sheet(
-    name: str,
+    request: CharacterSheetRequest,
     session: AsyncSession = Depends(get_session_async)
 ) -> CharacterSheetResponse:
     """gets a character sheet by id"""
-    sheet = await crud.create_character_sheet_async(session, name)
-    return CharacterSheetResponse(id=str(sheet.CharacterSheetId), name=sheet.Name)
-
+    sheet = await crud.create_character_sheet_async(session, request.name)
+    return character_sheet_mapper.character_sheet_response_map(sheet)

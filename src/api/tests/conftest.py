@@ -12,7 +12,7 @@ from main import app
 SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://postgres:admin@db:5432"
 
 @pytest.fixture(scope="session")
-def test_database() -> AsyncSession:
+async def test_database() -> AsyncSession:
     """ Creates a db connection session with rollback """
     async_engine = create_async_engine(SQLALCHEMY_DATABASE_URL, echo=True)
     async_session_local = async_sessionmaker(async_engine,   
@@ -28,8 +28,8 @@ def test_database() -> AsyncSession:
 
     yield session_instance
 
-    session_instance.rollback()
-    session_instance.close()
+    await session_instance.rollback()
+    await session_instance.close()
 
 @pytest.fixture(scope="session")
 def event_loop():

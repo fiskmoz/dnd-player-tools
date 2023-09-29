@@ -10,6 +10,15 @@
  */
 
 /**
+ * CharacterSheetRequest
+ * Request model for creating a character sheet
+ */
+export interface CharacterSheetRequest {
+  /** Name */
+  name: string
+}
+
+/**
  * CharacterSheetResponse
  * Response model for a character sheet
  */
@@ -273,17 +282,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request GET:/character_sheets/{character_sheet_id}
      */
     getCharacterSheetCharacterSheetsCharacterSheetIdGet: (
-      characterSheetId: string,
-      query: {
-        /** Id */
-        id: number
-      },
+      characterSheetId: number,
       params: RequestParams = {}
     ) =>
       this.request<CharacterSheetResponse, HTTPValidationError>({
         path: `/character_sheets/${characterSheetId}`,
         method: 'GET',
-        query: query,
         format: 'json',
         ...params
       }),
@@ -296,10 +300,15 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @summary Create Character Sheet
      * @request POST:/character_sheets/
      */
-    createCharacterSheetCharacterSheetsPost: (params: RequestParams = {}) =>
-      this.request<CharacterSheetResponse, any>({
+    createCharacterSheetCharacterSheetsPost: (
+      data: CharacterSheetRequest,
+      params: RequestParams = {}
+    ) =>
+      this.request<CharacterSheetResponse, HTTPValidationError>({
         path: `/character_sheets/`,
         method: 'POST',
+        body: data,
+        type: ContentType.Json,
         format: 'json',
         ...params
       })

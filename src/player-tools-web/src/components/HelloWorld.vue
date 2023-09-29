@@ -1,23 +1,28 @@
-<script setup lang="ts">
+<script lang="ts">
+import { Api } from '@/domain/client'
+import { defineComponent } from 'vue'
 
-function increment() {
-}
+export default defineComponent({
+  components: {},
+  data() {
+    return {
+      characterSheet: null
+    }
+  }
+})
 </script>
 
 <template>
-  <div class="container"> 
+  <div class="container">
     <div class="col-12">
-      <div class="fw-bold">
-        AI Character Creation
+      <div class="fw-bold">AI Character Creation</div>
+    </div>
+    <div class="container">
+      <div class="col-12">
+        <button>Navigate to new</button>
       </div>
     </div>
-      <div class="container">
-    <div class="col-12">
-      <button @click="increment" >Navigate to new</button>
-    </div>
-  </div>
   </div>
 </template>
 
-<style>
-</style>
+<style></style>
