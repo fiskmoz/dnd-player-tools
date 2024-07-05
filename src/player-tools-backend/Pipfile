@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "==0.111.0"
+pydantic = "==2.3.0"
+alembic = "*"
+python-dotenv = "*"
+uvicorn = "*"
+sqlalchemy = {extras = ["asyncio"], version = "*"}
+asyncpg = "*"
+psycopg2 = "*"
+pytest = "*"
+pytest-mock = "*"
+greenlet = "*"
+httpx = "*"
+trio = "*"
+pytest-asyncio = "*"
+anyio = "*"
+
+[dev-packages]

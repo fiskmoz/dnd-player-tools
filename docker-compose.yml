@@ -12,12 +12,12 @@ services:
 
   api:
     build:
-      context: ./src/api
+      context: ./src/player-tools-backend
       dockerfile: Dockerfile
-    working_dir: /api/
-    command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000 --reload "
+    working_dir: /
+    command: bash -c "uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload "
     volumes:
-      - ./src/api:/api
+      - ./src/player-tools-backend/player-tools/api:/api
     ports:
       - "8000:8000"
     depends_on:
@@ -28,7 +28,7 @@ services:
       context: ./src/player-tools-web
       dockerfile: Dockerfile
     working_dir: /web/
-    command: sh -c "npm rebuild esbuild && npm run host"
+    command: sh -c "npm rebuild esbuild && npm i && npm run dev"
     volumes:
       - ./src/player-tools-web:/web
     ports:

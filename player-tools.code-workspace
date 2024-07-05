@@ -1,0 +1,39 @@
+{
+  "folders": [
+    {
+      "name": "Backend",
+      "path": "src/player-tools-backend"
+    },
+    {
+      "name": "Frontend",
+      "path": "src/player-tools-web"
+    },
+    {
+      "name": "Explorer",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "python.envFile": "${workspaceFolder}/.env",
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/bin": true,
+      "**/obj": true,
+      "**/.vscode": true
+    },
+    "cSpell.words": [
+      "fastapi",
+      "healthcheck",
+      "httpx",
+      "pydantic",
+      "sessionmaker",
+      "sqlalchemy",
+      "uvicorn"
+    ]
+  },
+  "extensions": {
+    "recommendations": []
+  }
+}
